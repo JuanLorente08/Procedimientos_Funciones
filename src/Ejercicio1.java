@@ -2,6 +2,11 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Ejercicio1 {
+    static Random aleat = new Random();
+    static int filaAl = -1;
+    static int colAl = -1;
+    static int filaOficialYoda = -1;
+    static int columnaOficialYoda = -1;
     static int MAX_FIL_YODA = 10;
     static int MAX_COL_YODA = 10;
     static int MAX_FIL_DM = 10;
@@ -24,6 +29,19 @@ public class Ejercicio1 {
                 tableroYoda[i][j] = LIBRE;
             }
         }
+    }
+
+    static void Yoda(char[][] tableroYoda){
+        for (int i = 0; i < 1; i++) {
+            do{
+                filaAl = aleat.nextInt(MAX_FIL_YODA);
+                colAl = aleat.nextInt(MAX_COL_YODA);
+            }while(tableroYoda[filaAl][colAl]!=LIBRE);
+            tableroYoda[filaAl][colAl] = YODA;
+        }
+        // OFICIALIZO LAS POSICIONES DE MI YODA
+        filaOficialYoda = filaAl;
+        columnaOficialYoda = colAl;
     }
 
     public static void main(String[] args) {
@@ -54,21 +72,7 @@ public class Ejercicio1 {
         rellenar_Libre(tableroYoda);
 
         // 1 YODA
-        Random aleat = new Random();
-        int filaAl = -1;
-        int colAl = -1;
-        int filaOficialYoda = -1;
-        int columnaOficialYoda = -1;
-        for (int i = 0; i < 1; i++) {
-            do{
-                filaAl = aleat.nextInt(MAX_FIL_YODA);
-                colAl = aleat.nextInt(MAX_COL_YODA);
-            }while(tableroYoda[filaAl][colAl]!=LIBRE);
-            tableroYoda[filaAl][colAl] = YODA;
-        }
-        // OFICIALIZO LAS POSICIONES DE MI YODA
-        filaOficialYoda = filaAl;
-        columnaOficialYoda = colAl;
+        Yoda(tableroYoda);
 
         // FIN
         char MURO = 'M';
@@ -148,8 +152,8 @@ public class Ejercicio1 {
                     tableroYoda[filaOficialYoda][columnaOficialYoda] = YODA;
                     tableroYoda[filaAnteriorYoda][colAnteriorYoda] = LIBRE;
                 }
-
             }
+            imprimir_Tablero(tableroYoda);
 
         }while(vidas>0);
     }
