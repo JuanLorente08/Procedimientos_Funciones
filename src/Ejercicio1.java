@@ -18,6 +18,14 @@ public class Ejercicio1 {
         }
     }
 
+    static void rellenar_Libre(char[][] tableroYoda){
+        for (int i = 0; i < MAX_FIL_YODA; i++) {
+            for (int j = 0; j < MAX_COL_YODA; j++) {
+                tableroYoda[i][j] = LIBRE;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         boolean yodaActive = true;
         boolean dmActive = false;
@@ -43,11 +51,7 @@ public class Ejercicio1 {
             dmActive = false;
         }
 
-        for (int i = 0; i < MAX_FIL_YODA; i++) {
-            for (int j = 0; j < MAX_COL_YODA; j++) {
-                tableroYoda[i][j] = LIBRE;
-            }
-        }
+        rellenar_Libre(tableroYoda);
 
         // 1 YODA
         Random aleat = new Random();
