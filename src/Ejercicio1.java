@@ -1,3 +1,5 @@
+// Queda poner la casilla de final
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -13,6 +15,7 @@ public class Ejercicio1 {
     static int MAX_COL_DM = 10;
     static char YODA = 'Y';
     static char LIBRE = 'L';
+    static char MURO = 'M';
 
     static void imprimir_Tablero(char[][] tableroYoda){
         for (int i = 0; i < MAX_FIL_YODA; i++) {
@@ -44,6 +47,17 @@ public class Ejercicio1 {
         columnaOficialYoda = colAl;
     }
 
+    static void Muro(char[][] tableroYoda){
+        for (int i = 0; i < 10; i++) {
+            do{
+                filaAl = aleat.nextInt(MAX_FIL_YODA);
+                colAl = aleat.nextInt(MAX_COL_YODA);
+            }while(tableroYoda[filaAl][colAl]!=LIBRE);
+            tableroYoda[filaAl][colAl] = MURO;
+        }
+    }
+
+
     public static void main(String[] args) {
         boolean yodaActive = true;
         boolean dmActive = false;
@@ -71,18 +85,10 @@ public class Ejercicio1 {
 
         rellenar_Libre(tableroYoda);
 
-        // 1 YODA
+        // Variables
         Yoda(tableroYoda);
+        Muro(tableroYoda);
 
-        // FIN
-        char MURO = 'M';
-        for (int i = 0; i < 10; i++) {
-            do{
-                filaAl = aleat.nextInt(MAX_FIL_YODA);
-                colAl = aleat.nextInt(MAX_COL_YODA);
-            }while(tableroYoda[filaAl][colAl]!=LIBRE);
-            tableroYoda[filaAl][colAl] = MURO;
-        }
         char VADER = 'V';
         for (int i = 0; i < 7; i++) {
             do{
