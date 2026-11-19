@@ -16,6 +16,7 @@ public class Ejercicio1 {
     static char YODA = 'Y';
     static char LIBRE = 'L';
     static char MURO = 'M';
+    static char VADER = 'V';
 
     static void imprimir_Tablero(char[][] tableroYoda){
         for (int i = 0; i < MAX_FIL_YODA; i++) {
@@ -57,6 +58,16 @@ public class Ejercicio1 {
         }
     }
 
+    static void Vader(char[][] tableroYoda){
+        for (int i = 0; i < 7; i++) {
+            do{
+                filaAl = aleat.nextInt(MAX_FIL_YODA);
+                colAl = aleat.nextInt(MAX_COL_YODA);
+            }while(tableroYoda[filaAl][colAl]!=LIBRE);
+            tableroYoda[filaAl][colAl] = VADER;
+        }
+    }
+
 
     public static void main(String[] args) {
         boolean yodaActive = true;
@@ -84,19 +95,11 @@ public class Ejercicio1 {
         }
 
         rellenar_Libre(tableroYoda);
-
         // Variables
         Yoda(tableroYoda);
         Muro(tableroYoda);
+        Vader(tableroYoda);
 
-        char VADER = 'V';
-        for (int i = 0; i < 7; i++) {
-            do{
-                filaAl = aleat.nextInt(MAX_FIL_YODA);
-                colAl = aleat.nextInt(MAX_COL_YODA);
-            }while(tableroYoda[filaAl][colAl]!=LIBRE);
-            tableroYoda[filaAl][colAl] = VADER;
-        }
         char POCIMA = 'P';
         for (int i = 0; i < 5; i++) {
             do{
