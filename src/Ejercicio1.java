@@ -17,6 +17,7 @@ public class Ejercicio1 {
     static char LIBRE = 'L';
     static char MURO = 'M';
     static char VADER = 'V';
+    static char POCIMA = 'P';
 
     static void imprimir_Tablero(char[][] tableroYoda){
         for (int i = 0; i < MAX_FIL_YODA; i++) {
@@ -68,6 +69,32 @@ public class Ejercicio1 {
         }
     }
 
+    static void pocima(char[][] tableroYoda){
+        for (int i = 0; i < 5; i++) {
+            do{
+                filaAl = aleat.nextInt(MAX_FIL_YODA);
+                colAl = aleat.nextInt(MAX_COL_YODA);
+            }while(tableroYoda[filaAl][colAl]!=LIBRE);
+            tableroYoda[filaAl][colAl] = POCIMA;
+        }
+    }
+    static void mov(char mov){
+        switch (mov){ // W, A, S o D
+            case 'W':
+                filaOficialYoda = filaOficialYoda - 1;
+                break;
+            case 'A':
+                columnaOficialYoda = columnaOficialYoda - 1;
+                break;
+            case 'S':
+                filaOficialYoda = filaOficialYoda + 1;
+                break;
+            case 'D':
+                columnaOficialYoda = columnaOficialYoda + 1;
+                break;
+        }
+    }
+
 
     public static void main(String[] args) {
         boolean yodaActive = true;
@@ -99,16 +126,9 @@ public class Ejercicio1 {
         Yoda(tableroYoda);
         Muro(tableroYoda);
         Vader(tableroYoda);
-
-        char POCIMA = 'P';
-        for (int i = 0; i < 5; i++) {
-            do{
-                filaAl = aleat.nextInt(MAX_FIL_YODA);
-                colAl = aleat.nextInt(MAX_COL_YODA);
-            }while(tableroYoda[filaAl][colAl]!=LIBRE);
-            tableroYoda[filaAl][colAl] = POCIMA;
-        }
+        pocima(tableroYoda);
         imprimir_Tablero(tableroYoda);
+
         // EMPIEZA EL JUEGO !!!
         int vidas = 10;
         Scanner lector = new Scanner(System.in);
@@ -119,20 +139,8 @@ public class Ejercicio1 {
             char mov = lector.next().charAt(0);
             int filaAnteriorYoda = filaOficialYoda;
             int colAnteriorYoda = columnaOficialYoda;
-            switch (mov){ // W, A, S o D
-                case 'W':
-                    filaOficialYoda = filaOficialYoda - 1;
-                    break;
-                case 'A':
-                    columnaOficialYoda = columnaOficialYoda - 1;
-                    break;
-                case 'S':
-                    filaOficialYoda = filaOficialYoda + 1;
-                    break;
-                case 'D':
-                    columnaOficialYoda = columnaOficialYoda + 1;
-                    break;
-            }
+            mov(mov);
+
             // Y SI YODA SE SALE DEL TABLERO ??????????????????
             if(
                     filaOficialYoda < 0 ||
