@@ -13,6 +13,9 @@ public class Ejercicio1 {
     static int MAX_COL_YODA = 10;
     static int MAX_FIL_DM = 10;
     static int MAX_COL_DM = 10;
+    static int filafinal = 9;
+    static int columnafinal = 9;
+    static char fin = 'F';
     static char YODA = 'Y';
     static char LIBRE = 'L';
     static char MURO = 'M';
@@ -95,6 +98,10 @@ public class Ejercicio1 {
         }
     }
 
+    static void Fin(char[][] tableroYoda){
+        tableroYoda[filafinal][columnafinal] = fin;
+    }
+
 
     public static void main(String[] args) {
         boolean yodaActive = true;
@@ -122,6 +129,7 @@ public class Ejercicio1 {
         }
 
         rellenar_Libre(tableroYoda);
+        Fin(tableroYoda);
         // Variables
         Yoda(tableroYoda);
         Muro(tableroYoda);
